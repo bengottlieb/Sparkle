@@ -24,6 +24,7 @@
 #import "SUErrors.h"
 #import "SUAppcast.h"
 #import "SUAppcastItem.h"
+#import "SUUpdater.h"
 
 @interface SUBasicUpdateDriver ()
 
@@ -457,7 +458,7 @@
     assert(self.updateItem);
     assert(self.updateValidator);
     
-    BOOL validationCheckSuccess = [self.updateValidator validateWithUpdateDirectory:self.tempDir];
+    BOOL validationCheckSuccess = SUUpdater.disableValidation || [self.updateValidator validateWithUpdateDirectory:self.tempDir];
     if (!validationCheckSuccess) {
         NSDictionary *userInfo = @{
                                    NSLocalizedDescriptionKey: SULocalizedString(@"An error occurred while extracting the archive. Please try again later.", nil),

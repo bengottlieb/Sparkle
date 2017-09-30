@@ -33,6 +33,13 @@ SU_EXPORT @interface SUUpdater : NSObject
 @property (unsafe_unretained) IBOutlet id<SUUpdaterDelegate> delegate;
 
 /*!
+ Skip validation. Useful when testing.
+ */
+@property (class, nonatomic) BOOL disableValidation;
+
+
+
+/*!
  The shared updater for the main bundle.
  
  This is equivalent to passing [NSBundle mainBundle] to SUUpdater::updaterForBundle:
@@ -154,6 +161,7 @@ SU_EXPORT @interface SUUpdater : NSObject
  The default implementation can be overrided.
  */
 @property (nonatomic, copy) NSString *userAgentString;
+
 
 /*!
  The HTTP headers used when checking for updates.
